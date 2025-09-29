@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Carlos Antônio - Portfólio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis de cores para fácil customização */
+        :root {
+            --primary-bg: #0a192f; /* Azul escuro */
+            --secondary-bg: #112240; /* Um pouco mais claro que o primário */
+            --text-color: #ccd6f6; /* Texto claro */
+            --accent-color: #64ffda; /* Destaque verde-água */
+            --light-text-color: #8892b0; /* Texto secundário */
+        }
+
+        body, html {
+            height: 100%;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .cover-container {
+            max-width: 960px;
+        }
+
+        .masthead .inner {
+            background-color: var(--primary-bg); /* Garante que o header tenha o mesmo fundo */
+            padding: 1rem 0;
+        }
+
+        .masthead-brand {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+
+        .nav-masthead .nav-link {
+            color: var(--light-text-color);
+            border-bottom: .25rem solid transparent;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .inner.cover {
+            padding: 5rem 0; /* Espaçamento para o Hero */
+            text-align: left; /* Alinhamento do texto conforme a imagem */
+            margin-top: 5rem;
+        }
+
+        .cover-heading {
+            font-size: 4rem; /* Tamanho maior para o título principal */
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+
+        .lead {
+            font-size: 1.3rem;
+            color: var(--light-text-color);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary-custom { /* Botão customizado */
+            color: var(--accent-color);
+            background-color: transparent;
+            border-color: var(--accent-color);
+            border-width: 2px;
+            padding: .75rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: rgba(100, 255, 218, 0.1); /* Um leve brilho */
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-top: 5rem;
+            margin-bottom: 3rem;
+            text-align: left; /* Alinhamento do título da seção */
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after { /* Linha decorativa abaixo do título */
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        #sobre, #projetos, #formacao, #contato {
+            padding: 2rem 0;
+            text-align: left;
+        }
+
+        /* Card de projetos */
+        .project-card {
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-img { /* Estilo para as imagens dos projetos */
+            width: 100%;
+            height: 180px; /* Altura fixa para as imagens */
+            object-fit: contain; /* Ajusta a imagem dentro da área sem cortar, mantendo a proporção */
+            background-color: #0d213a; /* Fundo ligeiramente diferente para a área da imagem */
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            padding: 10px; /* Um pequeno padding para a imagem não colar nas bordas */
+        }
+
+
+        .project-card h5 {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--light-text-color);
+            font-size: 0.95rem;
+        }
+
+        .project-links a {
+            color: var(--light-text-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Estilo da timeline para formação/experiência */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px; /* Ajuste a posição da linha central */
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--light-text-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid var(--primary-bg);
+            left: 3px; /* Ajuste para alinhar com a linha */
+            top: 5px;
+            z-index: 1;
+        }
+
+        .timeline-item h5 {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .timeline-item small {
+            color: var(--light-text-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            color: var(--light-text-color);
+        }
+
+        /* Contato */
+        #contato a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #contato a:hover {
+            color: var(--text-color);
+        }
+
+        .social-icons a {
+            color: var(--light-text-color);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        .mastfoot {
+            margin-top: auto; /* Empurra o footer para o final */
+            background-color: var(--primary-bg);
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--secondary-bg);
+        }
+
+        .mastfoot p {
+            color: var(--light-text-color);
+            margin-bottom: 0;
+        }
+
+        .mastfoot a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .mastfoot a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .cover-heading {
+                font-size: 3rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .inner.cover {
+                margin-top: 2rem;
+                padding: 3rem 0;
+            }
+            .masthead-brand {
+                font-size: 1.5rem;
+                text-align: center;
+                display: block;
+            }
+            .nav-masthead {
+                margin-top: 1rem;
+            }
+            .nav-masthead .nav-link {
+                margin: 0 0.5rem;
+            }
+            .project-img {
+                height: 120px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="d-flex h-100 text-center">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <header class="masthead mb-auto">
+        <div class="inner d-flex justify-content-between align-items-center">
+            <h3 class="masthead-brand">Carlos Antônio</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="#home">Home</a>
+                <a class="nav-link" href="#sobre">Sobre Mim</a>
+                <a class="nav-link" href="#projetos">Projetos</a>
+                <a class="nav-link" href="#formacao">Formação</a>
+                <a class="nav-link" href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover" id="home">
+        <h1 class="cover-heading">Olá, sou Carlos Antônio, <br> um Desenvolvedor Full-Stack</h1>
+        <p class="lead">Sou apaixonado por criar soluções web que solucionam problemas do dia a dia e facilitam a vida das pessoas. Atualmente, focado em aprimorar minhas habilidades em Python e JavaScript.</p>
+        <p class="lead">
+            <a href="#projetos" class="btn btn-lg btn-primary-custom">Veja meus projetos</a>
+        </p>
+    </main>
+
+    <section id="sobre" class="mb-5">
+        <h2 class="section-title">Sobre Mim</h2>
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center mb-4 mb-md-0">
+                <img src="img/minhafoto.png" class="img-fluid rounded-circle" alt="Carlos Antônio" style="border: 3px solid var(--accent-color);">
+            </div>
+            <div class="col-md-9">
+                <p>Atualmente curso Análise e Desenvolvimento de Sistemas na FAESA, mergulhando em lógica de programação, Python e muito mais. Amo resolver problemas com códigos e criar soluções simples, funcionais e divertidas. Fora do computador, gosto de explorar novas tecnologias e aprender sempre algo novo. 🚀</p>
+                <p>Aqui estão algumas tecnologias com as quais tenho trabalhado:</p>
+                <div class="row">
+                    <div class="col-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-caret-right" style="color: var(--accent-color);"></i> Python</li>
+                            <li><i class="fas fa-caret-right" style="color: var(--accent-color);"></i> JavaScript (Básico)</li>
+                            <li><i class="fas fa-caret-right" style="color: var(--accent-color);"></i> HTML & CSS</li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-caret-right" style="color: var(--accent-color);"></i> Bootstrap</li>
+                            <li><i class="fas fa-caret-right" style="color: var(--accent-color);"></i> Git & GitHub</li>
+                            <li><i class="fas fa-caret-right" style="color: var(--accent-color);"></i> SQL (Básico)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="mb-5">
+        <h2 class="section-title">Meus Projetos</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 d-flex">
+                <div class="project-card">
+                    <img src="img/gasolina.png" class="project-img" alt="Mini Sistema de Consumo de Gasolina">
+                    <div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <i class="far fa-folder" style="font-size: 2rem; color: var(--accent-color);"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/CarlosNS2003/projeto1" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://carlosns2003.github.io/projeto1/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h5>Mini Sistema de Consumo de Gasolina</h5>
+                        <p>Calcula consumo de combustível com base na distância, preço do combustível e média do veículo. Ideal para controle de gastos.</p>
+                    </div>
+                    <div class="mt-auto">
+                        <small class="text-muted">Python, CLI</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex">
+                <div class="project-card">
+                    <img src="img/pedidos.png" class="project-img" alt="Gerenciador de Pedidos">
+                    <div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <i class="far fa-folder" style="font-size: 2rem; color: var(--accent-color);"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/CarlosNS2003/projeto2" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://carlosns2003.github.io/projeto2/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h5>Gerenciador de Pedidos</h5>
+                        <p>Sistema para acompanhar pedidos em rota ou não, inspirado em plataformas como Shopee, com funcionalidades de status e histórico.</p>
+                    </div>
+                    <div class="mt-auto">
+                        <small class="text-muted">Python, Flask (futuro)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex">
+                <div class="project-card">
+                    <img src="img/calculadora.png" class="project-img" alt="Calculadora de 4 Operações">
+                    <div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <i class="far fa-folder" style="font-size: 2rem; color: var(--accent-color);"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/CarlosNS2003/projeto3" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://carlosns2003.github.io/projeto3/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h5>Calculadora de 4 Operações</h5>
+                        <p>Calculadora básica usando IFs e ELSE para operações somar, subtrair, multiplicar e dividir. Um clássico para praticar lógica.</p>
+                    </div>
+                    <div class="mt-auto">
+                        <small class="text-muted">JavaScript, HTML, CSS</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex">
+                <div class="project-card">
+                    <img src="img/imc.png" class="project-img" alt="Sistema de Cálculo de IMC">
+                    <div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <i class="far fa-folder" style="font-size: 2rem; color: var(--accent-color);"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/CarlosNS2003/projeto4" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://carlosns2003.github.io/projeto4/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h5>Sistema de Cálculo de IMC</h5>
+                        <p>Calcula IMC com base em peso e altura, informando classificação de saúde (abaixo do peso, normal, etc.).</p>
+                    </div>
+                    <div class="mt-auto">
+                        <small class="text-muted">JavaScript, HTML, CSS</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex">
+                <div class="project-card">
+                    <img src="img/todo.png" class="project-img" alt="To-Do App Criativo">
+                    <div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <i class="far fa-folder" style="font-size: 2rem; color: var(--accent-color);"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/CarlosNS2003/projeto-todo" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://carlosns2003.github.io/projeto-todo/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h5>To-Do App Criativo</h5>
+                        <p>Gerencia tarefas do dia a dia com cores e ícones divertidos.</p>
+                    </div>
+                    <div class="mt-auto">
+                        <small class="text-muted">JavaScript, HTML, CSS</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex">
+                <div class="project-card">
+                    <img src="img/quiz.png" class="project-img" alt="Quiz de Conhecimento">
+                    <div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <i class="far fa-folder" style="font-size: 2rem; color: var(--accent-color);"></i>
+                            <div class="project-links">
+                                <a href="https://github.com/CarlosNS2003/projeto-quiz" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://carlosns2003.github.io/projeto-quiz/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h5>Quiz de Conhecimento</h5>
+                        <p>Sistema de perguntas e respostas interativo.</p>
+                    </div>
+                    <div class="mt-auto">
+                        <small class="text-muted">JavaScript, HTML, CSS</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="formacao" class="mb-5">
+        <h2 class="section-title">Formação e Experiência</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h5>Superior em Análise e Desenvolvimento de Sistemas (ADS)</h5>
+                <small>FAESA | 2023 - Atualmente</small>
+                <p>Cursando o ensino superior, aprofundando conhecimentos em lógica de programação, banco de dados e desenvolvimento web.</p>
+            </div>
+            <div class="timeline-item">
+                <h5>Cursos Livres e Workshops</h5>
+                <small>Alura & Udemy | 2022 - Atualmente</small>
+                <p>Lógica de Programação, Introdução a Python, Git e GitHub, Fundamentos de HTML e CSS. Participação em workshop de Desenvolvimento Web.</p>
+            </div>
+            <div class="timeline-item">
+                <h5>Projeto Acadêmico: App de Organização de Tarefas</h5>
+                <small>FAESA | 2023</small>
+                <p>Membro da equipe de desenvolvimento de um aplicativo mobile para organização de tarefas, aplicando conceitos de UI/UX e metodologias ágeis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="mb-5">
+        <h2 class="section-title">Entre em Contato</h2>
+        <p class="lead">Gostaria de discutir um projeto ou apenas dizer olá? Fique à vontade para entrar em contato!</p>
+        <div class="social-icons mb-4">
+            <a href="https://www.linkedin.com/in/carlos-nunes-045297248" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/CarlosNS2003" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:carlossouzanunes333@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>Ou envie um e-mail para: <a href="mailto:carlossouzanunes333@gmail.com">carlossouzanunes333@gmail.com</a></p>
+    </section>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>Desenvolvido por Carlos Antônio com <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>.</p>
+        </div>
+    </footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
